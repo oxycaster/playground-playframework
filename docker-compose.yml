@@ -1,0 +1,11 @@
+version: '3.9'
+
+services:
+  database:
+    image: 'mariadb:10.5.9-focal'
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'app'
+      MYSQL_ROOT_PASSWORD: 'example'
+    ports:
+      - 3306:3306

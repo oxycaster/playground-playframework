@@ -1,5 +1,9 @@
 val projectName = "playground-playframework"
 
+lazy val databaseUrl = sys.env.getOrElse("JDBC_DATABASE_URL", "")
+lazy val databaseUser = sys.env.getOrElse("JDBC_DATABASE_USERNAME", "")
+lazy val databasePassword = sys.env.getOrElse("JDBC_DATABASE_PASSWORD", "")
+
 lazy val root: Project = (project in file("."))
   .enablePlugins(PlayScala)
   .settings(
@@ -14,5 +18,18 @@ lazy val root: Project = (project in file("."))
       "com.softwaremill.macwire" %% "macrosakka" % "2.5.8" % Provided,
       "com.softwaremill.macwire" %% "util" % "2.5.8",
       "com.softwaremill.macwire" %% "proxy" % "2.5.8",
+    )
+  )
+
+lazy val flyway = (project in file("modules/flyway"))
+  .enablePlugins(FlywayPlugin)
+  .settings(
+    scalaVersion := "2.13.5",
+    flywayUrl := databaseUrl,
+    flywayUser := databaseUser,
+    flywayPassword := databasePassword,
+    flywayLocations += "db/migration",
+    libraryDependencies ++= Seq(
+      "mysql" % "mysql-connector-java" % "5.1.47",
     )
   )
