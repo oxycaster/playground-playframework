@@ -27,7 +27,7 @@ class PlayComponents(context: Context) extends BuiltInComponentsFromContext(cont
   }
   val logger: Logger = Logger(this.getClass)
 
-  logger.info("googleCredentialsをダンプします===============")
+  logger.info("PlayApplicationLoaderが使用されます")
 
   override def httpFilters: Seq[EssentialFilter] = super.httpFilters :+ corsFilter
 
