@@ -8,7 +8,6 @@ import play.api.routing.Router
 import play.filters.HttpFiltersComponents
 import play.filters.cors.CORSComponents
 import router.Routes
-
 import scala.concurrent.ExecutionContext
 
 class PlayApplicationLoader extends ApplicationLoader {
@@ -20,7 +19,8 @@ class PlayComponents(context: Context) extends BuiltInComponentsFromContext(cont
   with I18nComponents
   with HttpFiltersComponents
   with CORSComponents
-  with IndexModule {
+  with IndexModule
+  with RepositoryModule {
 
   LoggerConfigurator(context.environment.classLoader).foreach {
     _.configure(context.environment, context.initialConfiguration, Map.empty)

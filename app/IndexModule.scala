@@ -2,7 +2,7 @@ import controllers.IndexController
 import play.api.i18n.Langs
 import play.api.mvc.ControllerComponents
 
-trait IndexModule {
+trait IndexModule extends RepositoryModule {
   import com.softwaremill.macwire._
 
   def langs: Langs
