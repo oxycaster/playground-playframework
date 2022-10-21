@@ -23,7 +23,7 @@ lazy val root: Project = (project in file("."))
       "com.softwaremill.macwire" %% "proxy" % "2.5.8",
 
       "com.typesafe.play" %% "play-slick" % "5.1.0",
-    )
+    ).map(_.exclude("org.slf4j", "*"))
   ).dependsOn(slick).aggregate(slick)
 
 lazy val flyway = (project in file("modules/flyway"))
@@ -48,7 +48,7 @@ lazy val slick = (project in file("modules/slick"))
 
       "com.typesafe.slick" %% "slick" % "3.4.1",
       "com.typesafe.slick" %% "slick-hikaricp" % "3.4.1",
-    ),
+    ).map(_.exclude("org.slf4j", "*")),
 
     slickCodegenDatabaseUrl := databaseUrl,
     slickCodegenDatabaseUser := databaseUser,
